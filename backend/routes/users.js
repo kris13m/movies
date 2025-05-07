@@ -24,9 +24,9 @@ database.connect((err) => {
     }
     console.log('Connected to the database.');
   });
+//api.com/api/users
 
-
-  router.get('/get', (req, res) => {
+  router.get('/', (req, res) => {
     const query = 'SELECT * FROM users';
   
     database.query(query, (err, results) => {
@@ -126,7 +126,4 @@ database.connect((err) => {
         });
     });
     
-  
-
-
 module.exports = router;

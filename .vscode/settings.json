@@ -1,0 +1,18 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "fullstack-moviedb.mysql.database.azure.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "moviesDB",
+            "database": "moviedb",
+            "username": "kris13m",
+            "askForPassword": true
+        }
+    ]
+}

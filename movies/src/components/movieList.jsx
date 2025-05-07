@@ -7,6 +7,7 @@ function MovieList() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [movies, setMovies] = useState([]);
+    
    
 
     useEffect(() => {
@@ -14,7 +15,7 @@ function MovieList() {
             try {
                 const token = localStorage.getItem("AuthoToken");
 
-                const response = await axios.get(`http://localhost:3000/api/movies?page=${page}`, {
+                const response = await axios.get(`http://localhost:3000/api/movies?page=${page}&c`, {
                     headers: {
                         accept: 'application/json',
                         Authorization: `Bearer ${token}`
