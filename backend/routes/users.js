@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const mysql = require('mysql2');
-const authenticateJWT = require("../services/authMiddleware");
-const checkUsernameExists = require("../services/checkUsernameExists");
+const authenticateJWT = require("../middleware/authenticateToken");
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config();

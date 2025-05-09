@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
-const NodeCache = require('node-cache');
-require('dotenv').config();
+const moviesController = require('../controllers/moviesController');
 
+router.get('/:id', moviesController.getMovieById);
+router.get('/', moviesController.getAllMovies)
+//router.post('/', moviesController.createMovie);
+
+module.exports = router;
+/*
 const cache = new NodeCache({ stdTTL: 600 }); // cache med levetid på 10 minutter
 
 router.get('/', async (req, res) => {
@@ -60,7 +64,4 @@ router.get('/', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch movies' });
     }
 });
-
-
-
-module.exports = router;
+*/
