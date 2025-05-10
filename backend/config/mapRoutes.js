@@ -13,5 +13,5 @@ module.exports = function mapRoutes(app) {
   apiRouter.use('/auth', authRoutes);
 
   
-  app.use('/api', apiRouter); //d
+  app.use('/api', apiRouter); 
 };

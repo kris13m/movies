@@ -19,14 +19,11 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
             <Navbar></Navbar>
-
-            
             <Routes>
                 <Route path = "/create" element = {<CreateAccountPage></CreateAccountPage>}></Route>
                 <Route path = "/" element = {<HomePage></HomePage>}></Route>
                 <Route path = "/list" element = {<MovieList></MovieList>}></Route>
             </Routes>
-
        </BrowserRouter>
       </AuthProvider>
   );

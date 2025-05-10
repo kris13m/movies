@@ -1,14 +1,16 @@
 const express = require('express');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const xss = require('xss-clean'); // escapes html
+const helmet = require('helmet');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Core middleware
 app.use(express.json());
-app.use(cookieParser());
+app.use(xss());
+app.use(helmet());
 
 const corsPolicy = {
   origin: 'http://localhost:5173',

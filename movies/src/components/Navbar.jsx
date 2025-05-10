@@ -1,23 +1,22 @@
 import { useAuth } from "../contexts/AuthContext";
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
 
-function Navbar()
-{
-    const {isLoggedIn, authUser} = useAuth();
-    
+function Navbar() {
+  const { isLoggedIn } = useAuth();
 
-    return(
-        
-        !isLoggedIn ?
-        <nav>
-                <Link to="/">Home</Link> | <Link to="/Create">account</Link>
-        </nav>
-
-        :<nav>
-                <Link to="/">Home</Link> | <Link to="/list">Popular now</Link> | <Link to="/Create">account</Link>
-        </nav>
-        
-    )
+  return (
+    <nav className = "navbar">
+      <Link to="/">Home</Link> 
+      {isLoggedIn ? (
+        <>
+          {" | "}
+          <Link to="/list">Popular now</Link>
+        </>
+      ) : null}
+      {" | "}
+      <Link to="/Create">Account</Link>
+    </nav>
+  );
 }
 
 export default Navbar;

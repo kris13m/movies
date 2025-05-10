@@ -1,19 +1,12 @@
 const usersRepository = require('../repositories/usersRepository');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+//const { login } = require('../controllers/authController');
 
 async function registerUser(username, plainPassword, confirmPassword) {
 
-  
-
-  if (plainPassword !== confirmPassword) {
+  if(plainPassword !== confirmPassword) {
     throw new Error('Passwords do not match');
-  }
-
-  if(plainPassword.length < 6) {
-    throw new Error('Password must be at least 6 characters long');
-  }
-  if(plainPassword.length > 20){
-    throw new Error('Password must be at most 20 characters long');
   }
 
   const existingUser = await usersRepository.findUserByUsername(username);
@@ -25,4 +18,28 @@ async function registerUser(username, plainPassword, confirmPassword) {
   const newUser = await usersRepository.createUser(username, passwordHash);
   return newUser;
 }
-module.exports = { registerUser };
+
+async function loginUser(username, password) {
+
+  const user = await usersRepository.findUserByUsername(username);
+  if (!user) {
+    throw new Error('Invalid username or password');
+  }
+
+  const passwordMatch = await bcrypt.compare(password, user.password_hash);
+  if (!passwordMatch) {
+    throw new Error('Invalid username or password');
+  }
+
+  const token = jwt.sign(
+    { userId: user.user_id, username: user.username, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
+
+  return {
+    user: { id: user.user_id, username: user.username, role: user.role },
+    token
+  };
+}
+module.exports = { registerUser, loginUser };
