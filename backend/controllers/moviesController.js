@@ -12,7 +12,7 @@ async function getMovieById(req, res) {
 
 async function getAllMovies(req, res) { 
     try {
-        const movies = await moviesService.getAllMovies();
+        const movies = await moviesService.getAllMovies(req.query);
         res.json(movies);
       } catch (error) {
         console.error('Error fetching movies:', error);

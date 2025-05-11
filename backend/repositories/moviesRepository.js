@@ -2,28 +2,31 @@ const db = require('../config/sequelizeInstance');  // Import the database conne
 const { Movie, Genre } = require('../models');
 
 async function findById(id) {
-    try {
-        // Ensure you're using promise-based queries
-        const [rows] = await db.query('SELECT * FROM movies WHERE movie_id = ?', [id]);
-
-        if (rows.length === 0) {
-            throw new Error('Movie not found');
-        }
-
-        return rows[0];  // Return the first movie object
-    } catch (error) {
-        console.error('Error in findById:', error);
-        throw error;  // Re-throw the error to handle it in the service/controller
+        return Movie.findByPk(id,{
+  include: [{
+    model: Genre,
+    attributes: ['genre_id', 'genre'],
+    through: {
+      attributes: [] 
     }
+  }]
+});
 }
 
-
-
-async function getAllMovies() {
-  return Movie.findAll({
-    include: Genre
-  });
-};
+async function getAllMovies(options) {
+    const { limit, offset, where, order } = options;
+    return Movie.findAndCountAll({
+        where: where,
+        include: [{
+            model: Genre,
+            attributes: ['genre_id', 'genre'],
+            through: { attributes: [] }  // Exclude join table attributes
+        }],
+        limit: limit,
+        offset: offset,
+        order: order
+    });
+}
 
 module.exports = {
     findById,

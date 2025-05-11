@@ -9,12 +9,14 @@ Movie.belongsToMany(Genre, {
     timestamps: false //
   });
   
+  
   Genre.belongsToMany(Movie, {
     through: 'movies_genres',
     foreignKey: 'genre_id',
     otherKey: 'movie_id',
     timestamps: false // 
   });
+  
 
 
 module.exports = { Movie, Genre };

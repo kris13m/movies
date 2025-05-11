@@ -11,9 +11,17 @@ const validate = (req, res, next) => {
   next();
 };
 
-const usernameValidator = (req, res, next) => {
-  body('username').isLength({ min: 3 }).withMessage('Username must be at least 3 characters long');
-  
+const usernameValidator = async (req, res, next) => {
+  await body('username')
+    .isLength({ min: 3 })
+    .withMessage('Username must be at least 3 characters long')
+    .run(req);
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   next();
 };
 

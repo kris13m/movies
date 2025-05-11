@@ -1,16 +1,23 @@
 import React from 'react';
 
-function MovieCard({movie}) {
+function MovieCard({ movie }) {
+    if (!movie) {
+        return <div className="movie-card">No movie data available.</div>;
+    }
 
     return (
         <div className="movie-card">
-            <h2>{movie.title}</h2>
-            <p>released: {movie.release_date}</p>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-            <p>{movie.overview}</p>
-            <p><b>review score: {movie.vote_average}/10</b></p>
-            <p><b>reviewers: {movie.vote_count}</b></p>
-            <hr></hr>
+            <h2>{movie.title || "Untitled Movie"}</h2>
+            <p>Released: {movie.release_date || "Unknown"}</p>
+            {movie.poster_path ? (
+                <img src={movie.poster_path} alt={movie.title || "Movie poster"} />
+            ) : (
+                <p>No poster available.</p>
+            )}
+            <p>{movie.tagline || "No tagline available."}</p>
+            <p><b>Review score: {movie.vote_average ?? "N/A"}/10</b></p>
+            <p><b>Reviewers: {movie.vote_count ?? "N/A"}</b></p>
+            <hr />
         </div>
     );
 }
