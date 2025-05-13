@@ -1,5 +1,4 @@
 /backend/node_modules
 
-movies/.env
 
-backend/.env
+/backend/.env

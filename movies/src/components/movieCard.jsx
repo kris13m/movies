@@ -1,4 +1,6 @@
 import React from 'react';
+import './movie.css';
+
 
 function MovieCard({ movie }) {
     if (!movie) {
@@ -6,20 +8,17 @@ function MovieCard({ movie }) {
     }
 
     return (
+        <a href = "https://google.com" style={{ color: 'inherit', textDecoration: 'none' }}>
         <div className="movie-card">
+            <div>
             <h2>{movie.title || "Untitled Movie"}</h2>
+            <img src={movie.backdrop_path} alt={movie.title} />
+            <p>"{movie.tagline}"</p>
             <p>Released: {movie.release_date || "Unknown"}</p>
-            {movie.poster_path ? (
-                <img src={movie.poster_path} alt={movie.title || "Movie poster"} />
-            ) : (
-                <p>No poster available.</p>
-            )}
-            <p>{movie.tagline || "No tagline available."}</p>
-            <p><b>Review score: {movie.vote_average ?? "N/A"}/10</b></p>
-            <p><b>Reviewers: {movie.vote_count ?? "N/A"}</b></p>
-            <hr />
+            </div>
         </div>
-    );
+        </a>
+    )
 }
 
 export default MovieCard;

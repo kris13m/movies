@@ -3,6 +3,7 @@ import MovieCard from './movieCard';
 import axios from 'axios';
 
 
+
 function MovieList() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);

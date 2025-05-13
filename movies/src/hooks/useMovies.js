@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import apiClient from '../api/apiClient';
+import ApiClient from '../api/apiClient';
 
-const apiclient = new apiClient("/movies");
+const moviesClient = new ApiClient('/movies'); // matches your backend route
 
-function useBooks() {
+const fetchMovies = async (params) => {
+  const data = await moviesClient.getAll(params);
+  return data;
+};
+
+export const useMovies = (params) => {
   return useQuery({
-    queryKey: ['books'],
-    queryFn: fetchBooks,
+    queryKey: ['movies', params],
+    queryFn: () => fetchMovies(params),
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
-}
-
-export default useBooks;
+};

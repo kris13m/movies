@@ -5,11 +5,12 @@ import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
 import HomePage from './pages/HomePage';
 import Navbar from './components/Navbar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import MovieCard from './components/movieCard';
 
-//import AuthContext from './contexts/AuthContext';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import CreateAccountPage from './pages/CreateAccountPage';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import MovieList2 from './components/MovieList2';
 
 const queryClient = new QueryClient();
 
@@ -21,18 +22,18 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Navbar></Navbar>
-            <MovieCard></MovieCard>
+            <MovieList2></MovieList2>
               <Routes>
                 <Route path = "/create" element = {<CreateAccountPage></CreateAccountPage>}></Route>
                 <Route path = "/" element = {<HomePage></HomePage>}></Route>
                 <Route path = "/list" element = {<MovieList></MovieList>}></Route>
               </Routes>
           </BrowserRouter>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </AuthProvider>
   );
 }
-
 
 
 export default App;

@@ -1,0 +1,24 @@
+.movie-card{
+    border: solid black 2px;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    aspect-ratio: 16/22;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.movie-card:hover{
+    background-color: gray
+}
+
+.movie-card img{
+    width: 100%;
+}
+
+.cards-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-direction: row;
+}

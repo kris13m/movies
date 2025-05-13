@@ -22,6 +22,7 @@ async function getAllMovies(options) {
             attributes: ['genre_id', 'genre'],
             through: { attributes: [] }  // Exclude join table attributes
         }],
+        distinct: true,
         limit: limit,
         offset: offset,
         order: order
