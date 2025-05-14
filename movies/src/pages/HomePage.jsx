@@ -1,4 +1,4 @@
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/LoginForm/LoginForm";
 import { useAuth } from "../contexts/AuthContext";
 
 function HomePage(){
@@ -6,10 +6,10 @@ function HomePage(){
 
     return(
         <>
+             
             <h1>welcome to the home page</h1>
-            <p>here's a movie database where you can discover new and trending movies</p>
-
-            {!isLoggedIn && <LoginForm />}
+            <br></br>
+            <p>here's a movie database where you can discover an array of movies</p>
         </>
     )
 }

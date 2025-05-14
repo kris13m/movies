@@ -15,4 +15,4 @@ const authValidate = (req, res, next) => {
   });
 };
 
-module.exports =  authValidate ; 
+module.exports = authValidate; 

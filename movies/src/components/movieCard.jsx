@@ -1,5 +1,6 @@
 import React from 'react';
 import './movie.css';
+import { Link } from 'react-router-dom';
 
 
 function MovieCard({ movie }) {
@@ -8,16 +9,16 @@ function MovieCard({ movie }) {
     }
 
     return (
-        <a href = "https://google.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+        <Link to={`/movies/${movie.movie_id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
         <div className="movie-card">
             <div>
-            <h2>{movie.title || "Untitled Movie"}</h2>
+            <h2 className="title">{movie.title || "Untitled Movie"}</h2>
             <img src={movie.backdrop_path} alt={movie.title} />
             <p>"{movie.tagline}"</p>
-            <p>Released: {movie.release_date || "Unknown"}</p>
+            <p className='rls'>Released: {movie.release_date || "Unknown"}</p>
             </div>
         </div>
-        </a>
+        </Link>
     )
 }
 

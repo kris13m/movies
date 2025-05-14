@@ -19,7 +19,7 @@ async function getMovieById(id) {
 
 async function getAllMovies(queryParams) {
     let page = parseInt(queryParams.page, 10) || 1;
-    let limit = parseInt(queryParams.limit, 10) || 30;
+    let limit = parseInt(queryParams.limit, 10) || 24;
     const offset = (page - 1) * limit;
 
     const where = {};

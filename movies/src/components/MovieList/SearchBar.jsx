@@ -6,12 +6,10 @@ function SearchBar({ search, setSearch }) {
   const handleChange = (e) => {
     const value = e.target.value;
 
-    
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
     }
 
-    
     debounceTimeout.current = setTimeout(() => {
       setSearch(value);
     }, 400); // debounce timer

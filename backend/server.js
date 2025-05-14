@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(helmet());
 
 const corsPolicy = {
-  origin: process.env.CORS_ORIGIN,  // Use the value from .env
+  origin: process.env.CORS_ORIGIN,
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -21,13 +21,15 @@ const corsPolicy = {
 app.use(cors(corsPolicy));
 
 // Health check
-app.get('/', (req, res) => res.send('API online'));
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
 
-// Bootstrapping everything else
+
 const initializeApp = require('./config/initialize');
 
 initializeApp(app).then(() => {
-  app.listen(3000, () => console.log('API is running on http://localhost:3000'));
+  app.listen(3000, () => console.log('API is running on http://localhost:'+PORT || 3000));
 }).catch((err) => {
   console.error('Initialization error:', err);
   process.exit(1);

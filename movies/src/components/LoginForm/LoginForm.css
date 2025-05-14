@@ -1,0 +1,52 @@
+.login-form{
+    border: solid black 2px;
+    margin: 10px;
+    margin-top: 40px;
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+    border-radius: 5px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+}
+.login-form form{
+    margin-top: 30px;
+}
+
+.login-btn{
+    font-size: large;
+    margin: 10px;
+}
+
+.error {
+    color: rgb(230, 2, 2);
+    min-height: 1.2em; /* enough for one line of text */
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+.login-form input{
+    
+    border-radius: 1px;
+    
+}
+
+.login-form button{
+    background-color: rgb(76, 141, 239);
+    border:none;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 1px;
+    width: 30%;
+    color: white;
+    cursor: pointer;
+}
+
+.login-form button:active{
+    background-color: rgb(53, 100, 170);
+}
+
+a {
+    text-decoration: none; /* Removes the underline */
+}
+
