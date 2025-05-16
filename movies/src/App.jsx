@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Router from './pages/Router';
 
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 const queryClient = new QueryClient();
 

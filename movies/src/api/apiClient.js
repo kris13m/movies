@@ -9,14 +9,21 @@ const axiosSingleton = axios.create({
   }
 });
 
-// Add a request interceptor to include Authorization header automatically
+
 axiosSingleton.interceptors.request.use(config => {
-  const token = localStorage.getItem('token'); // Adjust if you store it elsewhere
+  const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 }, error => {
+  return Promise.reject(error);
+});
+
+axiosSingleton.interceptors.response.use(response => response, error => {
+  if (error.response.status === 403) {
+    
+  }
   return Promise.reject(error);
 });
 
@@ -36,6 +43,14 @@ class ApiClient {
       .get(this.apiResource, { params })
       .then(response => response.data);
   }
+
+  create(data) {
+    return axiosSingleton
+      .post(this.apiResource, data)
+      .then(response => response.data);
+  }
+
+  
 }
 
 export default ApiClient;

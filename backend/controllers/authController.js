@@ -15,6 +15,7 @@ async function register(req, res) {
 }
 
 async function login(req, res) {
+  console.log('Login attempt:', req.body);
   try {
     const { username, password } = req.body;
     const loginResult = await authService.loginUser(username, password);

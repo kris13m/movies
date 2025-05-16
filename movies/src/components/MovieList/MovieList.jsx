@@ -1,4 +1,4 @@
-import { useMovies } from "../../hooks/useMovies";
+import { useMovies } from "../../hooks/movies/useMovies";
 import Card from "../movieCard";
 import SortList from "./SortList";
 import SearchBar from './SearchBar'

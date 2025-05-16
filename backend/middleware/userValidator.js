@@ -29,7 +29,25 @@ const usernameValidator = async (req, res, next) => {
   next();
 };
 
+const passwordValidator = async (req, res, next) => {
+  await body('password')
+    .isLength({ min: 8 })
+    .withMessage('Password must be at least 8 characters long')
+    .isLength({ max: 20 })
+    .withMessage('Password must be less than 20 characters long')
+    .matches(/^[A-Za-z0-9_! -]+$/)
+    .withMessage('Password must only contain letter a-z, numbers, - and _')
+    .run(req);
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};
+
 module.exports = {
   validate,
-  usernameValidator
+  usernameValidator,
+  passwordValidator
 };

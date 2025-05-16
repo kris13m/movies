@@ -3,16 +3,16 @@ import Axios from 'axios';
 import { useAuth } from "../../contexts/AuthContext";
 import { useForm} from "react-hook-form";
 import './LoginForm.css';
+import { Link } from "react-router-dom";
+
 
 
 function LoginForm(){
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset, getValues } = useForm();
+     const { login } = useAuth();
 
     const onSubmit = async(data) => {
-        const response = await Axios.post("http://localhost:3000/api/users/login", data);
-        return response.data;
-
-        reset();
+        await login(data);
     };
 
     return(
@@ -65,7 +65,7 @@ function LoginForm(){
                 </p>
                 <button type="submit" disabled={isSubmitting} className="login-btn">Login</button>
             </form>
-            <p>Don't have an account? <a href="/create-account">Create Account</a></p>
+            <p>Don't have an account? <Link to="/Register">Create Account</Link></p>
         </div>
     );
 }

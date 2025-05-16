@@ -11,7 +11,9 @@ function Navbar() {
           <Link to="/">Home</Link> 
           <Link to="/Movies">Movies</Link>
           <Link to="/Create">Account</Link>
+          <Link to="/my-lists">My Lists</Link>
           <Link to="/login">Login</Link>
+          <Link to="/Register">Register</Link>
         </nav>
     </div>
   );

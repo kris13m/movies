@@ -4,7 +4,6 @@ const moviesController = require('../controllers/moviesController');
 const  authValidate  = require('../middleware/authMiddleware');
 
 router.get('/:id', moviesController.getMovieById);
-router.get('/', moviesController.getAllMovies)
-//router.post('/', moviesController.createMovie);
+router.get('/', authValidate, moviesController.getAllMovies)
 
 module.exports = router;

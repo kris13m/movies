@@ -21,7 +21,7 @@ function SortList({ sort, setSort, order, setOrder }) {
     <div>
       <label>Sort:</label>
       <select id="sort" onChange={handleChange}>
-        <option value="">Select Sort Option</option>
+        <option value=""></option>
         <option value="oldest">Oldest</option>
         <option value="newest">Newest</option>
       </select>
