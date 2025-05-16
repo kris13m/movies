@@ -29,5 +29,18 @@ async function getMoviesByListId(id) {
   return list.Movies;
 }
 
+async function addMovieToList(listId, movieId){
+    console.log("we're here");
 
-module.exports = { getListsByUserId, createList, getMoviesByListId };
+  const list = await List.findByPk(listId);
+  const movie = await Movie.findByPk(movieId);
+
+  if (!list || !movie) {
+    throw new Error('List or movie not found');
+  }
+
+  await list.addMovie(movie);
+}
+
+
+module.exports = { getListsByUserId, createList, getMoviesByListId, addMovieToList };

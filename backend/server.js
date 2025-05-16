@@ -23,7 +23,6 @@ app.use(
 
 const corsPolicy = {
   origin: process.env.CORS_ORIGIN,
-  methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 

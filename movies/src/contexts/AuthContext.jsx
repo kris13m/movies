@@ -25,8 +25,20 @@ export function AuthProvider({ children }) {
     navigate("/login");
   };
 
+  const register = async (credentials) => {
+  const response = await axios.post(
+    `${import.meta.env.VITE_API_URL}/auth/register`,
+    credentials
+  );
+  
+  const { user, token } = response.data;
+  localStorage.setItem("token", token);
+  setUser(user);
+  navigate("/home");
+};
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );

@@ -13,4 +13,8 @@ function getMoviesByListId(id) {
   return listsRepository.getMoviesByListId(id);
 }
 
-module.exports = {getListsByUserId, createList, getMoviesByListId};
+function addMovieToList(listId, movieId) {
+  return listsRepository.addMovieToList(listId, movieId);
+}
+
+module.exports = {getListsByUserId, createList, getMoviesByListId, addMovieToList};

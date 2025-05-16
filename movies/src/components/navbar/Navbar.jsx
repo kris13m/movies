@@ -1,4 +1,4 @@
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
 import "./Navbar.css";
 

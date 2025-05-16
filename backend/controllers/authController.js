@@ -3,19 +3,18 @@ const authService = require('../services/authService');
 async function register(req, res) {
   try {
     const { username, password, confirmPassword } = req.body;
-    const user = await authService.registerUser(username, password, confirmPassword);
-    res.status(201).json({ message: 'User registered successfully', user });
+    const result = await authService.registerUser(username, password, confirmPassword);
+    // result = { user, token }
+    res.status(201).json(result);
   } catch (error) {
     if (error.message === 'Username is already taken') {
-      return res.status(409).json({ error: error.message }); 
+      return res.status(409).json({ error: error.message });
     }
-
-    res.status(500).json({ error: 'Internal server error' }); 
+    res.status(500).json({ error: 'Internal server error' });
   }
 }
 
 async function login(req, res) {
-  console.log('Login attempt:', req.body);
   try {
     const { username, password } = req.body;
     const loginResult = await authService.loginUser(username, password);

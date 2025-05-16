@@ -4,8 +4,7 @@ const jwt = require('jsonwebtoken');
 //const { login } = require('../controllers/authController');
 
 async function registerUser(username, plainPassword, confirmPassword) {
-
-  if(plainPassword !== confirmPassword) {
+  if (plainPassword !== confirmPassword) {
     throw new Error('Passwords do not match');
   }
 
@@ -16,7 +15,24 @@ async function registerUser(username, plainPassword, confirmPassword) {
 
   const passwordHash = await bcrypt.hash(plainPassword, 10);
   const newUser = await usersRepository.createUser(username, passwordHash);
-  return newUser;
+
+  // Build token payload and sign
+  const token = jwt.sign(
+    { userId: newUser.user_id, username: newUser.username, role: newUser.role },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
+
+  console.log(token);
+
+  return {
+    user: {
+      id: newUser.user_id,
+      username: newUser.username,
+      role: newUser.role
+    },
+    token
+  };
 }
 
 async function loginUser(username, password) {
@@ -36,6 +52,8 @@ async function loginUser(username, password) {
     process.env.JWT_SECRET,
     { expiresIn: '1h' }
   );
+
+  
 
   return {
     user: { id: user.user_id, username: user.username, role: user.role },

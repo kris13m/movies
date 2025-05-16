@@ -1,5 +1,6 @@
 // for building the api urls
 import axios from 'axios';
+import { navigateTo } from '../services/navigation';
 
 // Create a singleton axios instance
 const axiosSingleton = axios.create({
@@ -21,8 +22,8 @@ axiosSingleton.interceptors.request.use(config => {
 });
 
 axiosSingleton.interceptors.response.use(response => response, error => {
-  if (error.response.status === 403) {
-    
+  if (error.response.status === 401) {
+    navigateTo("/login");
   }
   return Promise.reject(error);
 });
@@ -45,10 +46,14 @@ class ApiClient {
   }
 
   create(data) {
+    console.log(this.apiResource);
+
     return axiosSingleton
       .post(this.apiResource, data)
       .then(response => response.data);
   }
+
+  
 
   
 }

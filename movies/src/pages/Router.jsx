@@ -5,8 +5,17 @@ import LoginPage from "./LoginPage/LoginPage";
 import MoviePage from "./MoviePage/MoviePage";
 import RegisterPage from "./RegisterPage";
 import ListsPage from "./ListsPage/ListsPage"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { setNavigator } from "../services/navigation";
 
 function Router(){
+    const navigate = useNavigate();
+
+  useEffect(() => {
+    setNavigator(navigate);
+  }, [navigate]);
+
     return(
         <Routes>
             <Route path = "/movies" element = {<MoviesPage/>}></Route>

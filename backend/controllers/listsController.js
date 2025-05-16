@@ -46,7 +46,16 @@ async function getMoviesByListId(req, res) {
 }
 
 async function addMovieToList(req, res){
+    try {
+        const movieId = req.body.movieId;
+        const listId = req.params.id;
 
+      const result = await listsService.addMovieToList(listId, movieId);
+      res.json(result);
+    } catch (error) {
+      console.error('Error adding movie to list:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
 }
 
 
