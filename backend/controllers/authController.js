@@ -1,6 +1,7 @@
 const authService = require('../services/authService');
 const usersRepository = require('../repositories/usersRepository');
 const jwt = require('jsonwebtoken');
+const { getCookieOptions} = require('../utils/cookieUtil');
 
 
 async function register(req, res) {
@@ -9,15 +10,8 @@ async function register(req, res) {
     const { user, token } = await authService.registerUser(username, password, confirmPassword);
 
     
-    res.cookie('token', token, {
-  httpOnly: true,
-  secure: process.env.SECURE === 'true',     
-  sameSite: process.env.SAMESITE || 'lax',
-  maxAge: 60 * 60 * 1000,
-  path: '/',
-});
-
-    return res.status(201).json({ user });
+   res.cookie('token', token, getCookieOptions());
+return res.status(201).json({ user });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -26,18 +20,10 @@ async function register(req, res) {
 async function login(req, res) {
   try {
     const { username, password } = req.body;
-    const loginResult = await authService.loginUser(username, password);
+    const { user, token } = await authService.loginUser(username, password); 
 
-   
-   res.cookie('token', token, {
-  httpOnly: true,
-  secure: process.env.SECURE === 'true',    
-  sameSite: process.env.SAMESITE || 'lax',
-  maxAge: 60 * 60 * 1000,
-  path: '/',
-});
-
-    res.status(200).json({ user: loginResult.user });
+    res.cookie('token', token, getCookieOptions());
+return res.status(200).json({ user });
   } catch (error) {
     res.status(401).json({ error: error.message });
   }
@@ -45,14 +31,13 @@ async function login(req, res) {
 
 async function logout(req, res) {
   console.log("in logout");
-  res.cookie('token', '', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV !== 'development',
-    sameSite: 'lax',
-    maxAge: 0,
-    path: '/',
-  });
-  res.status(200).json({ message: 'Logged out' });
+  const logoutOptions = {
+  ...getCookieOptions(),
+  maxAge: 0,
+};
+
+res.cookie('token', '', logoutOptions);
+return res.status(200).json({ message: 'Logged out' });
 }
 
 async function getSession(req, res) {
