@@ -10,12 +10,12 @@ async function register(req, res) {
 
     
     res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== 'development',
-      sameSite:  'lax',
-      maxAge: 60 * 60 * 1000,
-      path: '/',
-    });
+  httpOnly: true,
+  secure: process.env.SECURE === 'true',     
+  sameSite: process.env.SAMESITE || 'lax',
+  maxAge: 60 * 60 * 1000,
+  path: '/',
+});
 
     return res.status(201).json({ user });
   } catch (error) {
@@ -29,13 +29,13 @@ async function login(req, res) {
     const loginResult = await authService.loginUser(username, password);
 
    
-    res.cookie('token', loginResult.token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== 'development', 
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 1000,
-      path: '/',
-    });
+   res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.SECURE === 'true',    
+  sameSite: process.env.SAMESITE || 'lax',
+  maxAge: 60 * 60 * 1000,
+  path: '/',
+});
 
     res.status(200).json({ user: loginResult.user });
   } catch (error) {
