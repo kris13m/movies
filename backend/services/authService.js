@@ -16,27 +16,23 @@ async function registerUser(username, plainPassword, confirmPassword) {
   const passwordHash = await bcrypt.hash(plainPassword, 10);
   const newUser = await usersRepository.createUser(username, passwordHash);
 
-  // Build token payload and sign
   const token = jwt.sign(
     { userId: newUser.user_id, username: newUser.username, role: newUser.role },
     process.env.JWT_SECRET,
     { expiresIn: '1h' }
   );
 
-  console.log(token);
-
   return {
     user: {
       id: newUser.user_id,
       username: newUser.username,
-      role: newUser.role
+      role: newUser.role,
     },
-    token
+    token,
   };
 }
 
 async function loginUser(username, password) {
-
   const user = await usersRepository.findUserByUsername(username);
   if (!user) {
     throw new Error('Invalid username or password');
@@ -53,11 +49,10 @@ async function loginUser(username, password) {
     { expiresIn: '1h' }
   );
 
-  
-
   return {
     user: { id: user.user_id, username: user.username, role: user.role },
     token
   };
 }
+
 module.exports = { registerUser, loginUser };

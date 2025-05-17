@@ -21,6 +21,11 @@
   color: white;
   padding: 10px;
   text-decoration: none;
+  cursor: pointer;
+}
+
+span{
+    color: white;
 }
 
 Link:active{

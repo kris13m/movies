@@ -8,4 +8,8 @@ async function findUserByUsername(username) {
     return await User.findOne({ where: { username } });
   }
 
-module.exports = { findUserByUsername, createUser };
+async function findUserById(userId) {
+    return await User.findByPk(userId);
+  }
+
+module.exports = { findUserByUsername, createUser, findUserById };

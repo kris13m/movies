@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
@@ -9,30 +9,52 @@ export function AuthProvider({ children }) {
   const navigate = useNavigate();
 
   const login = async (credentials) => {
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/auth/login`, 
-      credentials
-    );
-    const { user, token } = response.data;
-    localStorage.setItem("token", token);
-    setUser(user);
-    navigate("/home");
+  const response = await axios.post(
+    `${import.meta.env.VITE_API_URL}/auth/login`, 
+    credentials,
+    { withCredentials: true } // <--- send & receive cookies
+  );
+  
+  // No token in response.body, only user info
+  const { user } = response.data;
+  setUser(user);
+  navigate("/home");
+};
+
+
+useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/session`, {
+        withCredentials: true,
+      });
+      setUser(response.data.user);
+    } catch (err) {
+      setUser(null); // No session or error
+    }
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    navigate("/login");
-  };
+  fetchUser();
+}, []);
+
+  const logout = async () => {
+  try {
+    await axios.post(`${import.meta.env.VITE_API_URL}/auth/logout`, {}, { withCredentials: true });
+  } catch (err) {
+    console.error("Logout error", err);
+  }
+  setUser(null);
+  navigate("/Home");
+};
 
   const register = async (credentials) => {
   const response = await axios.post(
     `${import.meta.env.VITE_API_URL}/auth/register`,
-    credentials
+    credentials,
+    { withCredentials: true } // Make sure to send cookies on register too!
   );
   
-  const { user, token } = response.data;
-  localStorage.setItem("token", token);
+  const { user } = response.data;
   setUser(user);
   navigate("/home");
 };
