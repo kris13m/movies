@@ -3,7 +3,7 @@ import { useMovie } from '../../hooks/movies/useMovie';
 import './MoviePage.css';
 import ListSelector from '../../components/ListComponent/ListSelector';
 import { useState } from 'react';
-import { useUpdateListAddMovie } from '../../hooks/lists/useUpdateListAddMovie';
+import { useAddMovieToList } from '../../hooks/lists/useAddMovieToList';
 
 
 
@@ -13,14 +13,10 @@ function MoviePage() {
     const { id } = useParams(); // grabs the ":id" from the URL
     const { data: movie, isLoading, error } = useMovie(id);
 
-    
-
-
-     const mutation = useUpdateListAddMovie();
+     const mutation = useAddMovieToList();
    
 
     const handlePost = () => {
-
       if (!listId) return;
 
       mutation.mutate({ id: listId, params: { movieId: id } }); 

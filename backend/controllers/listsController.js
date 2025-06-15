@@ -58,5 +58,36 @@ async function addMovieToList(req, res){
     }
 }
 
+async function deleteMovieFromList(req, res) {
+  console.log("here");
+  try {
+    const movieId = req.params.movieId;
+    const listId = req.params.id;
 
-module.exports = {getListsByUserId, createList, getMoviesByListId, addMovieToList};
+    const result = await listsService.deleteMovieFromList(listId, movieId);
+
+    if (result === 0) {
+      return res.status(404).json({ message: 'Movie not found in list' });
+    }
+
+    res.status(204).send(); // 204 no content
+  } catch (error) {
+    console.error('Error deleting movie from list:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function deleteList(req, res) {
+  const { id } = req.params;
+
+  try {
+    await listsService.deleteList(id);
+    res.status(204).send(); // No content, successful deletion
+  } catch (error) {
+    console.error('Error deleting list:', error);
+    res.status(500).json({ error: 'Failed to delete list' });
+  }
+}
+
+
+module.exports = {getListsByUserId, createList, getMoviesByListId, addMovieToList, deleteMovieFromList, deleteList};

@@ -42,5 +42,20 @@ async function addMovieToList(listId, movieId){
   await list.addMovie(movie);
 }
 
+async function deleteMovieFromList(listId, movieId) {
+  const list = await List.findByPk(listId);
+  const movie = await Movie.findByPk(movieId);
 
-module.exports = { getListsByUserId, createList, getMoviesByListId, addMovieToList };
+  if (!list || !movie) {
+    throw new Error('List or movie not found');
+  }
+
+  await list.removeMovie(movie);
+}
+
+async function deleteList(id) {
+  return await List.destroy({ where: {list_id: id } });
+}
+
+
+module.exports = { getListsByUserId, createList, getMoviesByListId, addMovieToList, deleteMovieFromList, deleteList };

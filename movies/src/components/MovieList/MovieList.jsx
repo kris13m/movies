@@ -27,8 +27,8 @@ const MovieList = () => {
         <SortList sort={sort} setSort={setSort} order={order} setOrder={setOrder} />
       </div>
 
-      {isLoading && <p>Loading movies test...</p>}
-      {error && <p>Error loading movies test: {error.message}</p>}
+      {isLoading && <p>Loading movies...</p>}
+      {error && <p>Error loading movies: {error.message}</p>}
 
       <div className="cards-list">
         {movies?.map((movie) => (

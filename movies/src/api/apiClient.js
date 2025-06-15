@@ -54,9 +54,12 @@ class ApiClient {
       .then(response => response.data);
   }
 
-  
-
-  
+  delete(path = '') {
+    // If you want to delete e.g. /lists/123/movies/456, call delete('123/movies/456')
+    return axiosSingleton
+      .delete(`${this.apiResource}/${path}`)
+      .then(response => response.data);
+  }
 }
 
 export default ApiClient;

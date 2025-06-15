@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 function Navbar() {
-  const { user } = useAuth();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <div className="navbar-container">

@@ -6,7 +6,7 @@ const updateList = async ({ id, params }) => {
   return await apiClient.create(params);
 };
 
-export const useUpdateListAddMovie = () => {
+export const useAddMovieToList = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

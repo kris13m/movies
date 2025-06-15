@@ -1,20 +1,28 @@
 const listsRepository = require('../repositories/listsRepository');
 
 
-function getListsByUserId(id){
-    return listsRepository.getListsByUserId(id);
+async function getListsByUserId(id) {
+  return await listsRepository.getListsByUserId(id);
 }
 
-function createList(userId, name) {
-  return listsRepository.createList(userId, name);
+async function createList(userId, name) {
+  return await listsRepository.createList(userId, name);
 }
 
-function getMoviesByListId(id) {
-  return listsRepository.getMoviesByListId(id);
+async function getMoviesByListId(id) {
+  return await listsRepository.getMoviesByListId(id);
 }
 
-function addMovieToList(listId, movieId) {
-  return listsRepository.addMovieToList(listId, movieId);
+async function addMovieToList(listId, movieId) {
+  return await listsRepository.addMovieToList(listId, movieId);
 }
 
-module.exports = {getListsByUserId, createList, getMoviesByListId, addMovieToList};
+async function deleteMovieFromList(listId, movieId) {
+  return await listsRepository.deleteMovieFromList(listId, movieId);
+}
+
+function deleteList(id) {
+  return listsRepository.deleteList(id);
+}
+
+module.exports = {getListsByUserId, createList, getMoviesByListId, addMovieToList, deleteMovieFromList, deleteList};

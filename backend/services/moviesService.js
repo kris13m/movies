@@ -77,7 +77,4 @@ if (queryParams.sortBy) {
     };
 }
 
-module.exports = {
-    getMovieById,
-    getAllMovies
-};
+module.exports = { getMovieById, getAllMovies };
