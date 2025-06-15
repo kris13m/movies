@@ -1,6 +1,7 @@
 // for building the api urls
 import axios from 'axios';
 import { navigateTo } from '../services/navigation';
+import { getCookie } from '../utils/cookies';
 
 // Create a singleton axios instance
 const axiosSingleton = axios.create({
@@ -11,7 +12,7 @@ const axiosSingleton = axios.create({
   }
 });
 
-
+/*
 axiosSingleton.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -21,6 +22,20 @@ axiosSingleton.interceptors.request.use(config => {
 }, error => {
   return Promise.reject(error);
 });
+*/
+
+axiosSingleton.interceptors.request.use(config => {
+  const csrfToken = getCookie('csrf-token');
+
+  if (csrfToken) {
+    config.headers['X-CSRF-Token'] = csrfToken;
+  }
+
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
+
 
 axiosSingleton.interceptors.response.use(response => response, error => {
   if (error.response.status === 401) {

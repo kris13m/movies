@@ -2,7 +2,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
 
 const authValidate = (req, res, next) => {
-  // Assuming you use cookie-parser middleware to populate req.cookies
+  
   const token = req.cookies?.token; 
 
   if (!token) return res.status(401).json({ message: 'No token provided' });

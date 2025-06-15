@@ -1,8 +1,16 @@
 import LoginForm from "../components/LoginForm/LoginForm";
 import { useAuth } from "../contexts/AuthContext";
+import { getCookie } from '../utils/cookies.js';
+import { useEffect } from "react";
 
 function HomePage(){
     const {isLoggedIn} = useAuth();
+
+    
+useEffect(() => {
+  const csrfToken = getCookie('csrf-token');
+  console.log('CSRF token from cookie:', csrfToken);
+}, []);
 
     return(
         <>

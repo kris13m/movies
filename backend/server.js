@@ -12,14 +12,14 @@ app.use(cookieParser());
 
 const corsPolicy = {
   origin: process.env.CORS_ORIGIN,
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 };
 
+
 app.options('*', cors(corsPolicy));
 app.use(cors(corsPolicy));
-
 const initializeApp = require('./config/initialize');
 
 initializeApp(app)
