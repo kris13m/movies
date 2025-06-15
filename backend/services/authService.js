@@ -143,8 +143,8 @@ function generateCsrfToken() {
 function setCsrfCookie(res, csrfToken) {
   res.cookie('csrf-token', csrfToken, {
     ...getCookieOptions(),
-    httpOnly: false, // must be readable by frontend JS
-    sameSite: 'Strict', // or 'Lax' depending on your needs
+    httpOnly: false, // so it's readable by js frontend
+    sameSite: 'none', 
   });
 }
 
