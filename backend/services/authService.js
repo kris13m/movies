@@ -144,6 +144,7 @@ function setCsrfCookie(res, csrfToken) {
   res.cookie('csrf-token', csrfToken, {
     ...getCookieOptions(),
     httpOnly: false, // so it's readable by js frontend
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'none', 
   });
 }
