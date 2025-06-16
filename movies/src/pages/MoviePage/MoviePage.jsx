@@ -1,3 +1,81 @@
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useMovie } from '../../hooks/movies/useMovie';
+import { useAddMovieToList } from '../../hooks/lists/useAddMovieToList';
+import ListSelector from '../../components/ListComponent/ListSelector';
+import styles from './MoviePage.module.css';
+
+function MoviePage() {
+    const { id } = useParams();
+    const { data: movie, isLoading, error } = useMovie(id);
+    const [listId, setListId] = useState(null);
+    const mutation = useAddMovieToList();
+
+    const handleAddToList = () => {
+        if (!listId || mutation.isLoading) return;
+        mutation.mutate({ id: listId, params: { movieId: id } });
+    };
+    
+    if (isLoading) return <div className={styles['page-status']}>Loading movie...</div>;
+    if (error) return <div className={`${styles['page-status']} ${styles.error}`}>Error: {error.message}</div>;
+    if (!movie) return <div className={styles['page-status']}>No movie found.</div>;
+
+    return (
+        <div className={styles['movie-page-container']}>
+           
+            <div className={styles['movie-layout-grid']}> 
+            
+
+                <div className={styles['movie-title']}>{movie.title}</div>
+
+                {movie.tagline && (
+                    <div className={styles['movie-tagline']}>{movie.tagline}</div>
+                )}
+
+                {movie.Genres && movie.Genres.length > 0 && (
+                    <div className={styles['movie-genres']}>
+                        {movie.Genres.map((genre) => (
+                            <span key={genre.genre_id} className={styles['genre-pill']}>
+                                {genre.genre}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                <div
+                    className={styles['movie-image']}
+                    style={{ backgroundImage: `url(${movie.backdrop_path})` }}
+                >
+                 
+                </div>
+
+                <div className={styles['movie-overview']}>
+                    <p><b>Overview:</b> {movie.overview || "No overview available."}</p>
+                </div>
+
+                <div className={styles['movie-footer']}>
+                    <div className={styles['movie-info']}>
+                        {movie.release_date && <span>Release Date: {movie.release_date}</span>}
+                        {movie.original_language && <span>Language: {movie.original_language.toUpperCase()}</span>}
+                    </div>
+                    <div className={styles['add-to-list']}>
+                        <ListSelector setListId={setListId} />
+                        <button
+                            className={styles['add-button']}
+                            onClick={handleAddToList}
+                            disabled={!listId || mutation.isLoading}
+                        >
+                            {mutation.isLoading ? 'Adding...' : 'Add'}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default MoviePage;
+
 /*import { useParams } from 'react-router-dom';
 import { useMovie } from '../../hooks/movies/useMovie';
 import './MoviePage.css';
@@ -138,80 +216,3 @@ export default MoviePage;
 
 */
 
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-import { useMovie } from '../../hooks/movies/useMovie';
-import { useAddMovieToList } from '../../hooks/lists/useAddMovieToList';
-import ListSelector from '../../components/ListComponent/ListSelector';
-import styles from './MoviePage.module.css';
-
-function MoviePage() {
-    const { id } = useParams();
-    const { data: movie, isLoading, error } = useMovie(id);
-    const [listId, setListId] = useState(null);
-    const mutation = useAddMovieToList();
-
-    const handleAddToList = () => {
-        if (!listId || mutation.isLoading) return;
-        mutation.mutate({ id: listId, params: { movieId: id } });
-    };
-    
-    if (isLoading) return <div className={styles['page-status']}>Loading movie...</div>;
-    if (error) return <div className={`${styles['page-status']} ${styles.error}`}>Error: {error.message}</div>;
-    if (!movie) return <div className={styles['page-status']}>No movie found.</div>;
-
-    return (
-        <div className={styles['movie-page-container']}>
-           
-            <div className={styles['movie-layout-grid']}> 
-            
-
-                <div className={styles['movie-title']}>{movie.title}</div>
-
-                {movie.tagline && (
-                    <div className={styles['movie-tagline']}>{movie.tagline}</div>
-                )}
-
-                {movie.Genres && movie.Genres.length > 0 && (
-                    <div className={styles['movie-genres']}>
-                        {movie.Genres.map((genre) => (
-                            <span key={genre.genre_id} className={styles['genre-pill']}>
-                                {genre.genre}
-                            </span>
-                        ))}
-                    </div>
-                )}
-
-                <div
-                    className={styles['movie-image']}
-                    style={{ backgroundImage: `url(${movie.backdrop_path})` }}
-                >
-                  {/* The new CSS doesn't use image-overlay, but it's fine to leave it */}
-                </div>
-
-                <div className={styles['movie-overview']}>
-                    <p><b>Overview:</b> {movie.overview || "No overview available."}</p>
-                </div>
-
-                <div className={styles['movie-footer']}>
-                    <div className={styles['movie-info']}>
-                        {movie.release_date && <span>Release Date: {movie.release_date}</span>}
-                        {movie.original_language && <span>Language: {movie.original_language.toUpperCase()}</span>}
-                    </div>
-                    <div className={styles['add-to-list']}>
-                        <ListSelector setListId={setListId} />
-                        <button
-                            className={styles['add-button']}
-                            onClick={handleAddToList}
-                            disabled={!listId || mutation.isLoading}
-                        >
-                            {mutation.isLoading ? 'Adding...' : 'Add'}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default MoviePage;
