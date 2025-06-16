@@ -1,0 +1,197 @@
+/* --- General Page & Font Setup --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.moviePageContainer {
+  background-color: #1d2d3e; /* The dark background for the whole view */
+  font-family: 'Roboto', sans-serif;
+}
+
+/* === THE DESKTOP LAYOUT (default for screens > 800px) === */
+
+/* This is our main grid container. It no longer looks like a card. */
+.movie-layout-grid {
+  display: grid;
+  width: 100%;
+  min-height: 100vh; /* Make sure it fills the screen height */
+  background-color: #ffffff; /* The white background for the overview/footer areas */
+
+  /* The same grid areas, but they now define the whole page */
+  grid-template-areas:
+    "header  header"
+    "tagline tagline"
+    "genres  genres"
+    "image   overview"
+    "footer  footer";
+
+  /* Give more space to the image on desktop */
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: auto auto auto 1fr auto;
+}
+
+/* --- Header, Tagline, and Genres Sections (Full Width) --- */
+
+.movie-title {
+  grid-area: header;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 30px 5%; /* Use percentages for padding */
+  text-align: center;
+  /* Fluid font size: scales with viewport width between a min and max */
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+}
+
+.movie-tagline, .movie-genres {
+  grid-area: tagline; /* Both share styling */
+  background-color: #34495e;
+  color: #ecf0f1;
+  padding: 15px 5%;
+  text-align: center;
+}
+
+.movie-genres {
+  grid-area: genres;
+  padding-top: 0; /* Remove top padding to sit flush under tagline */
+  padding-bottom: 25px;
+}
+
+.genre-pill {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 6px 14px;
+  margin: 4px;
+  border-radius: 16px;
+  font-size: 0.9em;
+}
+
+/* --- Main Content Sections (Image and Overview) --- */
+
+.movie-image {
+  grid-area: image;
+  min-height: 500px; /* Taller image for a bigger feel */
+  background-color: #222;
+  background-size: cover;
+  background-position: center;
+}
+
+.movie-overview {
+  grid-area: overview;
+  padding: 40px; /* Generous padding on all sides */
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #333;
+  align-self: center; /* Vertically center the overview text */
+}
+
+/* --- Footer Section (Full Width) --- */
+
+.movie-footer {
+  grid-area: footer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping if needed */
+  gap: 20px;
+  padding: 25px 5%;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dfe4ea;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color:black;
+}
+
+.movie-info span {
+  color: #1f2429; /* A dark grey color */
+  font-weight: 500; /* Makes it a bit bolder */
+}
+
+.add-to-list {
+  display: flex;       /* Ensures items are side-by-side */
+  align-items: center; /* Vertically aligns them in the middle */
+  gap: 10px;           /* ADD THIS LINE: Creates a 10px space between the items */
+}
+
+.add-to-list select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95em;
+  font-family: inherit; /* Use the same font as the rest of the page */
+  background-color: #fff;
+  margin-right: 10px; /* Space between dropdown and button */
+  min-width: 150px; /* Give it a decent default size */
+}
+
+/* Fallback for loading/error states */
+.page-status, .error {
+  color: white;
+  padding: 40px;
+  font-size: 1.5rem;
+}
+
+/* =================================================================== */
+/* === RESPONSIVE STYLES (for screens <= 800px wide, e.g., mobile) === */
+/* =================================================================== */
+
+@media (max-width: 800px) {
+  /* Change the entire grid layout for mobile */
+  .movie-layout-grid {
+    /* 1. Switch to a single column */
+    grid-template-columns: 1fr;
+
+    /* 2. Redefine the grid areas to stack vertically */
+    grid-template-areas:
+      "header"
+      "tagline"
+      "genres"
+      "image"
+      "overview" /* Image is now ABOVE overview */
+      "footer";
+  }
+
+  /* 3. Make the image shorter on mobile */
+  .movie-image {
+    min-height: 250px;
+  }
+  
+  /* 4. Adjust padding for smaller screens */
+  .movie-overview {
+    padding: 30px 20px;
+  }
+
+  /* 5. Stack the footer items instead of side-by-side */
+  .movie-footer {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;    /* Center the stacked items */
+    text-align: center;
+  }
+
+  .movie-info {
+    align-items: center;
+  }
+}
+
+/* --- You can keep your button styles from before --- */
+.add-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95em;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+}
+.add-button:hover {
+  background-color: #5dade2;
+}
+.add-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}

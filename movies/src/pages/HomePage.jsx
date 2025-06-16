@@ -7,10 +7,7 @@ function HomePage(){
     const {isLoggedIn} = useAuth();
 
     
-useEffect(() => {
-  const csrfToken = getCookie('csrf-token');
-  console.log('CSRF token from cookie:', csrfToken);
-}, []);
+
 
     return(
         <>
