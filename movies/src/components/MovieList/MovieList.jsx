@@ -3,8 +3,7 @@ import Card from "../MovieCard/movieCard";
 import SortList from "./SortList";
 import SearchBar from './SearchBar'
 import { useState, useEffect } from "react";
-import './MovieList.css';
-//import '../movie.css';
+import './MovieList.css'
 import PageButtons from "./PageButtons";
 
 const MovieList = () => {
