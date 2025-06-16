@@ -1,7 +1,4 @@
-const authService = require('../services/authService');
-const usersRepository = require('../repositories/usersRepository');
-const jwt = require('jsonwebtoken');
-const { getCookieOptions} = require('../utils/cookieUtil');
+
 
 /*
 async function register(req, res) {
@@ -68,6 +65,11 @@ async function getSession(req, res) {
 }
 
 */
+
+const authService = require('../services/authService');
+const usersRepository = require('../repositories/usersRepository');
+const jwt = require('jsonwebtoken');
+const { getCookieOptions} = require('../utils/cookieUtil');
 
 
 async function login(req, res) {

@@ -1,7 +1,6 @@
-// for building the api urls
 import axios from 'axios';
 import { navigateTo } from '../services/navigation';
-import { getCookie } from '../utils/cookies';
+// import { getCookie } from '../utils/cookies';  // commented out since we won't use it
 
 // Create a singleton axios instance
 const axiosSingleton = axios.create({
@@ -12,30 +11,28 @@ const axiosSingleton = axios.create({
   }
 });
 
-/*
 axiosSingleton.interceptors.request.use(config => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-}, error => {
-  return Promise.reject(error);
-});
-*/
+  // const csrfToken = getCookie('csrf-token');  // commented out token retrieval
 
-axiosSingleton.interceptors.request.use(config => {
-  const csrfToken = getCookie('csrf-token');
+  // Instead of grabbing a token, just set a static flag
+  config.headers['X-CSRF-Token'] = 'flag_csrf';
+  console.log("CSRF token flag set to 'flag_csrf'");
 
+  /*
   if (csrfToken) {
     config.headers['X-CSRF-Token'] = csrfToken;
+    console.log("CSRF token added");
+    console.log(csrfToken);
   }
+  else{
+    console.log("CSRF token not added");
+  }
+  */
 
   return config;
 }, error => {
   return Promise.reject(error);
 });
-
 
 axiosSingleton.interceptors.response.use(response => response, error => {
   if (error.response.status === 401) {

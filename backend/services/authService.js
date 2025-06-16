@@ -79,7 +79,7 @@ function setTokenCookie(res, token) {
 // Helper: Clear cookie (e.g. on logout)
 function clearTokenCookie(res) {
   const expiredOptions = { ...getCookieOptions(), maxAge: 0 };
-
+  console.log("Logging out - clearing cookies");
   res.cookie('token', '', expiredOptions);
   res.cookie('csrf-token', '', expiredOptions); // Also clear CSRF token
 }
@@ -143,9 +143,9 @@ function generateCsrfToken() {
 function setCsrfCookie(res, csrfToken) {
   res.cookie('csrf-token', csrfToken, {
     ...getCookieOptions(),
-    httpOnly: false, // so it's readable by js frontend
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'none', 
+    httpOnly: false, // frontend needs to read it
+    secure: process.env.SECURE === 'true',
+    sameSite: process.env.SAMESITE || 'lax',
   });
 }
 
