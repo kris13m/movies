@@ -1,9 +1,9 @@
+import './MovieList2.css'
 import { useMovies } from "../../hooks/movies/useMovies";
 import Card from "../MovieCard/movieCard";
 import SortList from "./SortList";
 import SearchBar from './SearchBar'
 import { useState, useEffect } from "react";
-import './MovieList.css'
 import PageButtons from "./PageButtons";
 
 const MovieList = () => {
