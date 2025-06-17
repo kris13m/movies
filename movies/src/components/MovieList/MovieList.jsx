@@ -1,4 +1,4 @@
-import './MovieList2.css'
+import './MovieList.css'
 import { useMovies } from "../../hooks/movies/useMovies";
 import Card from "../MovieCard/movieCard";
 import SortList from "./SortList";

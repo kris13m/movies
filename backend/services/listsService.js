@@ -21,8 +21,14 @@ async function deleteMovieFromList(listId, movieId) {
   return await listsRepository.deleteMovieFromList(listId, movieId);
 }
 
-function deleteList(id) {
-  return listsRepository.deleteList(id);
+async function deleteList(listId, userId) {
+  const deletedRowCount = await listsRepository.deleteListById(listId, userId);
+
+  if (deletedRowCount === 0) {
+    throw new Error("Authorization failed or list not found.");
+  }
+
+  return { message: "List deleted successfully." };
 }
 
 module.exports = {getListsByUserId, createList, getMoviesByListId, addMovieToList, deleteMovieFromList, deleteList};

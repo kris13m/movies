@@ -9,6 +9,6 @@ router.get('/:id', authValidate, listsController.getMoviesByListId); // get all 
 router.post('/', authValidate, listsController.createList); // create list
 router.post('/:id/movies', authValidate, verifyCsrfTokenMiddleware, listsController.addMovieToList); // add movie to list
 router.delete('/:id/movies/:movieId',authValidate, listsController.deleteMovieFromList); // delete movie from list
-router.delete('/:id', listsController.deleteList);
+router.delete('/:id', authValidate, listsController.deleteList); // delete list
 
 module.exports = router;

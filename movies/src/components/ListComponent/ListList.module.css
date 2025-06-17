@@ -1,0 +1,115 @@
+/* ListList.module.css */
+
+.list-page-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* === Controls Section at the top === */
+.list-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  border: 1px solid #e9ecef;
+}
+
+.list-actions,
+.list-selection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.delete-list-button {
+  padding: 8px 14px;
+  background-color: #dc3545; /* A more dangerous red */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.delete-list-button:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.delete-list-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+
+/* === Content Area for the movie list === */
+.list-content-area {
+  padding: 20px;
+}
+
+.list-title {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #6c757d;
+  font-size: 1.1em;
+  padding: 40px 0;
+}
+
+/* === Individual Movie Item Styling === */
+.list-item {
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.list-item:hover {
+  background-color: #f8f9fa;
+  border-color: #adb5bd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.list-link {
+  color: #212529;
+  text-decoration: none;
+  font-weight: 500;
+  flex: 1;
+}
+
+.remove-movie-button {
+  margin-left: 15px;
+  padding: 6px 10px;
+  background-color: #6c757d; /* A more neutral grey */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+
+.remove-movie-button:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.remove-movie-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}

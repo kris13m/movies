@@ -1,7 +1,7 @@
 const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
 
-const authValidate = (req, res, next) => {
+const isAuthenticated = (req, res, next) => {
   
   const token = req.cookies?.token; 
 
@@ -15,4 +15,4 @@ const authValidate = (req, res, next) => {
   });
 };
 
-module.exports = authValidate;
+module.exports = isAuthenticated;

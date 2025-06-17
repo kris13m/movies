@@ -55,9 +55,9 @@ function RegisterForm() {
                         message: "Password must be less than 20 characters long"
                         },
                         pattern: {
-                        value: /^[A-Za-z0-9_!\-]+$/,
-                        message: "Password must only contain letters a-z, numbers, or characters - _ !"
-                        }
+  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d_-]+$/,
+  message: "must include both upper- and lower case letter, one number, and only use letters, numbers, - and _"
+}
                     })}
                     type="password"
                 />
@@ -77,9 +77,9 @@ function RegisterForm() {
                         message: "Password must be less than 20 characters long"
                         },
                         pattern: {
-                        value: /^[A-Za-z0-9_!\-]+$/,
-                        message: "Password must only contain letters a-z, numbers, or characters - _ !"
-                        },
+  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d_-]+$/,
+  message: "must include both upper- and lower case letter, one number, and only use letters, numbers, - and _"
+},
                         validate: (value) => value === getValues("password") || "Passwords do not match"
                     })}
                     type="password"
