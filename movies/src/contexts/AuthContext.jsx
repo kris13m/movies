@@ -51,7 +51,7 @@ useEffect(() => {
   const response = await axios.post(
     `${import.meta.env.VITE_API_URL}/auth/register`,
     credentials,
-    { withCredentials: true } // Make sure to send cookies on register too!
+    { withCredentials: true } 
   );
   
   const { user } = response.data;
@@ -67,3 +67,4 @@ useEffect(() => {
 }
 
 export const useAuth = () => useContext(AuthContext);
+

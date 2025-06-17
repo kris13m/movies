@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
+    "jest": "^30.0.0",
     "nodemon": "^3.1.10"
   }
 }

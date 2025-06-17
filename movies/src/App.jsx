@@ -1,23 +1,17 @@
-import { useState} from 'react';
-import './App.css'
+import './App.css';
 import Navbar from './components/navbar/Navbar';
-//import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Router from './pages/Router';
-
-
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
- // const [value, setValue] = useState('initial value');
-  
   return (
-        <>
-            <Navbar/>
-            <Router/>
-        </>
-       
+    <>
+      <Navbar />
+      <Router />
+      <ToastContainer position="top-right" autoClose={3000} />
+    </>
   );
 }
-
 
 export default App;

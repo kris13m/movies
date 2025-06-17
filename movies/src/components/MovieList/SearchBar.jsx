@@ -1,27 +1,28 @@
-import { useRef } from "react";
+import { useState, useEffect } from "react";
+import useDebounce from "../../hooks/useDebounce"; // Adjust path as needed
 
 function SearchBar({ search, setSearch }) {
-  const debounceTimeout = useRef(null);
+  // State for the input field's immediate value
+  const [inputValue, setInputValue] = useState(search);
+  
+  // Get the debounced value from our custom hook
+  const debouncedSearchTerm = useDebounce(inputValue, 400);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-
-    if (debounceTimeout.current) {
-      clearTimeout(debounceTimeout.current);
+ 
+  useEffect(() => {
+   
+    if (debouncedSearchTerm !== search) {
+      setSearch(debouncedSearchTerm);
     }
-
-    debounceTimeout.current = setTimeout(() => {
-      setSearch(value);
-    }, 400); // debounce timer
-  };
+  }, [debouncedSearchTerm, setSearch, search]);
 
   return (
     <div className="search-bar">
       <label>Search:</label>
       <input
         type="text"
-        defaultValue={search}
-        onChange={handleChange}
+        value={inputValue} 
+        onChange={(e) => setInputValue(e.target.value)}
         placeholder="Search for a movie..."
       />
     </div>

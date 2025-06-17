@@ -13,22 +13,7 @@ function createList(userId, name) {
     name: name
   });
 }
-/*
-async function getMoviesByListId(id) {
-  const list = await List.findByPk(id, {
-    include: {
-      model: Movie,
-      through: { attributes: [] }, // exclude join table info
-    },
-  });
 
-  if (!list) {
-    throw new Error('List not found');
-  }
-
-  return list.Movies;
-}
-  */
  async function getMoviesByListId(id) {
   const listInstance = await List.findByPk(id, {
     include: {
@@ -37,25 +22,19 @@ async function getMoviesByListId(id) {
     },
   });
 
-  // 1. Handle the case where the list is not found
-  // Your code throws an error, which is perfectly fine. The controller will catch it.
   if (!listInstance) {
     throw new Error('List not found');
   }
 
-  // 2. Convert the complex Sequelize instance into a clean JavaScript object
   const listData = listInstance.toJSON();
 
-  // 3. The movies are nested inside this object.
   const moviesArray = listData.Movies || [];
 
-  // 4. Clean up: We don't need the 'Movies' array inside the main 'list' object anymore.
   delete listData.Movies;
 
-  // 5. Return the structured object that the front-end now expects
   return {
-    list: listData,      // This is now an object with list_id, name, etc.
-    movies: moviesArray  // This is the array of movie objects
+    list: listData,     
+    movies: moviesArray  
   };
 }
 
