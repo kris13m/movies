@@ -1,4 +1,4 @@
-import LoginForm from "../../components/LoginForm/LoginForm";
+import LoginForm from "../../features/authentication/components/LoginForm/LoginForm";
 import "./LoginPage.css"
 
 function LoginPage() {

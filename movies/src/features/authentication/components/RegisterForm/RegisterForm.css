@@ -20,7 +20,7 @@
 
 .error {
     color: rgb(230, 2, 2);
-    min-height: 1.2em; /* enough for one line of text */
+    min-height: 1.2em; 
     font-size: 0.9em;
     margin-top: 4px;
 }
@@ -47,6 +47,6 @@
 }
 
 a {
-    text-decoration: none; /* Removes the underline */
+    text-decoration: none;
 }
 

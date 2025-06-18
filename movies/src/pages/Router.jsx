@@ -1,4 +1,47 @@
-import { Route, Routes } from "react-router-dom";
+
+
+import { Route, Routes, useNavigate } from "react-router-dom";
+import ProtectedRoute from "../features/authentication/components/ProtectedRoute";
+import { useEffect } from "react";
+
+import HomePage from "./HomePage";
+import MoviesPage from "./MoviesPage";
+import LoginPage from "./LoginPage/LoginPage";
+import MoviePage from "./MoviePage/MoviePage";
+import RegisterPage from "./RegisterPage";
+import ListsPage from "./ListsPage/ListsPage";
+
+
+function Router() { // Renamed from Router to avoid conflict with BrowserRouter
+ 
+
+  return (
+    <Routes>
+      {/* --- Public Routes --- */}
+      <Route path="/movies" element={<MoviesPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/movies/:id" element={<ProtectedRoute><MoviePage /></ProtectedRoute>} />
+      <Route path="/Register" element={<RegisterPage />} />
+      <Route path="*" element={<HomePage />} />
+
+      {/* --- Protected Route --- */}
+      {/* This is the key change. We wrap ListsPage in our ProtectedRoute. */}
+      <Route
+        path="/my-lists"
+        element={
+          <ProtectedRoute>
+            <ListsPage />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
+}
+
+export default Router;
+
+
+/*import { Route, Routes } from "react-router-dom";
 import HomePage from "./HomePage";
 import MoviesPage from "./MoviesPage";
 import LoginPage from "./LoginPage/LoginPage";
@@ -29,3 +72,4 @@ function Router(){
 }
 
 export default Router;
+*/
