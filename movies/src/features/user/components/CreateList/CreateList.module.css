@@ -1,0 +1,36 @@
+.create-list-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.create-list-input {
+  /* Box Model & Sizing */
+  padding: 8px 12px;
+  height: 40px;
+  box-sizing: border-box;
+
+  /* Borders & Background */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  
+  /* Typography */
+  font-size: 0.95em;
+  font-family: inherit;
+  color: #333;
+}
+
+/* 
+  The button will be our shared <Button /> component, but we can
+  add a specific class to give it a unique color for this context.
+*/
+.create-list-button {
+  background-color: #28a745; /* A nice green for "create" */
+  border-color: #28a745;
+}
+
+.create-list-button:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}

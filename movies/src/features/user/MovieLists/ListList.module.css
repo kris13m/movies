@@ -1,5 +1,4 @@
-/* ListList.module.css */
-
+/* === main container === */
 .list-page-container {
   max-width: 900px;
   margin: 40px auto;
@@ -7,7 +6,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* === Controls Section at the top === */
+/* === controls section at the top === */
 .list-controls {
   display: flex;
   justify-content: space-between;
@@ -28,9 +27,48 @@
   gap: 15px;
 }
 
+/* === "cheating" styles for unstyled controls === */
+.list-selection select {
+  padding: 8px 12px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 0.95em;
+  font-family: inherit;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.list-actions input[type="text"] {
+  padding: 8px 12px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+
+.list-actions button {
+  padding: 8px 14px;
+  height: 40px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.list-actions button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
 .delete-list-button {
   padding: 8px 14px;
-  background-color: #dc3545; /* A more dangerous red */
+  height: 40px;
+  background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 5px;
@@ -43,13 +81,13 @@
   background-color: #c82333;
 }
 
-.delete-list-button:disabled {
+.delete-list-button:disabled,
+.list-actions button:disabled {
   background-color: #a0a0a0;
   cursor: not-allowed;
 }
 
-
-/* === Content Area for the movie list === */
+/* === content area for the movie list === */
 .list-content-area {
   padding: 20px;
 }
@@ -67,7 +105,7 @@
   padding: 40px 0;
 }
 
-/* === Individual Movie Item Styling === */
+/* === individual movie item styling (the missing part) === */
 .list-item {
   border: 1px solid #dee2e6;
   padding: 15px;
@@ -96,7 +134,7 @@
 .remove-movie-button {
   margin-left: 15px;
   padding: 6px 10px;
-  background-color: #6c757d; /* A more neutral grey */
+  background-color: #6c757d;
   color: white;
   border: none;
   border-radius: 4px;
