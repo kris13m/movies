@@ -1,4 +1,3 @@
-import React from 'react';
 import './SelectInput.css';
 
 
@@ -12,7 +11,7 @@ function SelectInput({ label, value, onChange, options = [], ...props }) {
         onChange={(e) => onChange(e.target.value)}
         {...props}
       >
-        {/* Map over the standardized options array */}
+       
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

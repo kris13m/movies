@@ -11,6 +11,10 @@ html, body {
 body {
     background-color: rgb(250, 250, 250);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+    /* --- ADD THIS LINE --- */
+    /* This prevents the page width from changing when the vertical scrollbar appears. */
+    overflow-y: scroll;
 }
 
 #root {
@@ -26,5 +30,5 @@ body {
   padding: 20px;
   text-align: center;
   flex-grow: 1;
-  margin-top: 60px;
+  margin-top: 60px; /* This is still correct for creating the space */
 }

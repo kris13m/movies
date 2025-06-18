@@ -1,6 +1,22 @@
 .cards-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 10px;
   justify-items: center;
 }
+
+/* Add this new rule to your MovieList.css file */
+.params {
+  display: flex;
+  justify-content: space-between; /* This pushes children to opposite ends */
+  align-items: center; /* This vertically aligns them in the middle */
+  margin-bottom: 25px; /* Add some space below the controls */
+  width: 100%;
+}
+
+/* You might want some specific styles for the search bar wrapper too */
+.searchbar-wrapper {
+  /* This would be in SearchBar.css, but shows how it's part of the flex layout */
+}
+
+/* ... your existing .cards-list rule ... */

@@ -1,21 +1,13 @@
-
-
-// --- We've moved all the logic here ---
 import { useState } from 'react';
 import { useMovie } from '../../hooks/useMovie';
 import { useAddMovieToList } from '../../../user/hooks/useAddMovieToList';
 
-// We import the smart component for selecting a list
-import ListSelector from '../../../user/components/ListSelector'; // EEEEE
+import ListSelector from '../../../user/components/ListSelector';
 
-// Note: I'm assuming the CSS file is moved here too.
 import styles from './MoviePage.module.css';
 import Button from '../../../../components/ui/Button/Button';
 
-
-// The component now takes the movie ID as a prop, instead of getting it from the URL.
 function MovieDetailView({ movieId }) {
-      console.log("MovieDetailView received prop movieId:", movieId);
 
     const { data: movie, isLoading, error } = useMovie(movieId);
     const [listId, setListId] = useState('');
@@ -25,19 +17,18 @@ function MovieDetailView({ movieId }) {
         // The guard clause is still correct.
         if (!listId || mutation.isPending) return;
 
-        // --- THE FIX IS HERE ---
-        // We now build the exact object that the useAddMovieToList hook expects.
+       
         const mutationPayload = {
-            id: listId, // The hook expects the key to be 'id'
+            id: listId, //
             params: {
-                movieId: movieId // The hook expects the movie ID inside a 'params' object
+                movieId: movieId
             }
         };
 
-        // Log the new payload to confirm it's correct
+        
         console.log("SENDING CORRECTLY FORMATTED PAYLOAD:", mutationPayload);
 
-        // Call mutate with the correctly formatted object
+        
         mutation.mutate(mutationPayload);
     };
     
@@ -45,7 +36,7 @@ function MovieDetailView({ movieId }) {
     if (error) return <div className={`${styles['page-status']} ${styles.error}`}>Error: {error.message}</div>;
     if (!movie) return <div className={styles['page-status']}>No movie found.</div>;
 
-    // The JSX is almost identical, but uses our shared Button component for consistency
+    
     return (
         <div className={styles['movie-page-container']}>
             <div className={styles['movie-layout-grid']}> 

@@ -6,9 +6,6 @@ import MovieDetailView from '../../features/movie-browsing/components/MovieDetai
 function MoviePage() {
   const { id } = useParams();
 
-  // --- DEBUGGING STEP ---
-  console.log("MoviePage received ID from URL:", id);
-
   return (
     <MovieDetailView movieId={id} />
   );
