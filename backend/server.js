@@ -20,6 +20,7 @@ const corsPolicy = {
 
 app.options('*', cors(corsPolicy));
 app.use(cors(corsPolicy));
+
 const initializeApp = require('./config/initialize');
 
 initializeApp(app)

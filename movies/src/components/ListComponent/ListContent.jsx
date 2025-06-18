@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./ListList.module.css"; 
 
-// This is a "presentational" component. It just receives props and renders UI.
+
 function ListContent({ listData, onRemoveMovie, isRemovingMovie }) {
   return (
     <>

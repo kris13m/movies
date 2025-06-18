@@ -1,16 +1,13 @@
 import { useState } from "react";
 
-// Component Imports
 import ListSelector from "./ListSelector";
 import CreateList from "./CreateList";
 import ListContent from "./ListContent"; 
 
-// Hook Imports
 import { useList } from "../../hooks/lists/useList";
 import { useDeleteMovieFromList } from "../../hooks/lists/useDeleteMovieFromList";
 import { useDeleteList } from "../../hooks/lists/useDeleteList";
 
-// Styles Import
 import styles from "./ListList.module.css";
 
 function ListList() {
@@ -19,12 +16,7 @@ function ListList() {
   
   const deleteMovieMutation = useDeleteMovieFromList();
   
-  const deleteListMutation = useDeleteList({
-    onSuccess: () => {
-      // This is correct: it resets the view after a successful delete.
-      setListId(null); 
-    },
-  });
+  const deleteListMutation = useDeleteList();
 
   const handleRemoveMovie = (movieId) => {
     if (listId && movieId) {
@@ -32,18 +24,15 @@ function ListList() {
     }
   };
 
-  const handleDeleteList = () => {
-    // Only guard against the missing ID.
-    if (!listId) return;
+ const handleDeleteList = () => {
+  if (!listId) return;
 
-    // Provide a fallback name. This prevents the silent failure bug.
-    const listName = listData?.list?.name || "the selected list";
-    
-    if (window.confirm(`Are you sure you want to permanently delete "${listName}"?`)) {
-      deleteListMutation.mutate({listId});
-    }
-  };
-  // =====================================================================
+  const listName = listData?.list?.name || "the selected list";
+  if (window.confirm(`Are you sure you want to permanently delete "${listName}"?`)) {
+    deleteListMutation.mutate({ listId });
+    setListId(null);
+  }
+};
 
   const renderContent = () => {
     if (isLoading) return <p>Loading list...</p>;

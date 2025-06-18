@@ -1,0 +1,17 @@
+.searchbar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.searchbar-label {
+  font-weight: 500;
+}
+
+.shared-searchbar-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-width: 250px;
+}
