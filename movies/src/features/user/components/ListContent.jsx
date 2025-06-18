@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./ListList.module.css"; 
+import styles from '../MovieLists/ListList.module.css';
 
-
+//
 function ListContent({ listData, onRemoveMovie, isRemovingMovie }) {
   return (
     <>

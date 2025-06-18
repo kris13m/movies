@@ -41,9 +41,7 @@ export default ListSelector;
 
 */
 
-
-
-import { useLists } from '../../hooks/lists/useLists';
+import { useLists } from '../hooks/useLists';
 
 function ListSelector({setListId} ) {
   const { data = [] } = useLists();

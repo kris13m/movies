@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import ApiClient from '../../api/apiClient';
+import ApiClient from '../../../api/apiClient';
 
 const moviesClient = new ApiClient('/movies/');
 

@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-import ListSelector from "./ListSelector";
-import CreateList from "./CreateList";
-import ListContent from "./ListContent"; 
+import CreateList from "../components/CreateList.jsx";
+import ListContent from "../components/ListContent.jsx"; 
+import ListSelector from "../components/ListSelector.jsx";
 
-import { useList } from "../../hooks/lists/useList";
-import { useDeleteMovieFromList } from "../../hooks/lists/useDeleteMovieFromList";
-import { useDeleteList } from "../../hooks/lists/useDeleteList";
+import { useList } from "../hooks/useList";
+import { useDeleteMovieFromList } from "../hooks/useDeleteMovieFromList";
+import { useDeleteList } from "../hooks/useDeleteList";
 
 import styles from "./ListList.module.css";
 
-function ListList() {
+function MovieLists() {
   const [listId, setListId] = useState(null);
   const { data: listData, isLoading, isError } = useList(listId);
   
@@ -76,7 +76,7 @@ function ListList() {
   );
 }
 
-export default ListList;
+export default MovieLists;
 
 
 

@@ -1,8 +1,8 @@
-import ListList from "../../components/ListComponent/ListList";
+import MovieLists from "../../features/user/MovieLists/MovieLists";
 
 function ListsPage() {
     return (
-        <ListList />
+        <MovieLists />
     )
 }
 

@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 
 // --- HOOKS ---
 // NOTE: Adjust these paths based on your final feature-sliced folder structure.
-import { useMovies } from "../../hooks/movies/useMovies";
-import useDebounce from "../../hooks/useDebounce";
+import { useMovies } from '../../hooks/useMovies';
+import useDebounce from "../../../../hooks/useDebounce";
 
 // --- UI COMPONENTS ---
 // NOTE: Adjust these paths to your new `components/ui/` directory.
-import Card from "../MovieCard/movieCard"; // Or a generic `ui/Card/Card`
-import SelectInput from '../ui/SelectInput/SelectInput';
-import SearchBar from '../ui/SearchBar/SearchBar';
-import Button from '../ui/Button/Button';
+import Card from "./MovieCard/movieCard"; // Or a generic `ui/Card/Card`
+import SelectInput from '../../../../components/ui/SelectInput/SelectInput';
+import SearchBar from '../../../../components/ui/SearchBar/SearchBar';
+import Button from '../../../../components/ui/Button/Button';
 
 // Configuration for the sort dropdown. Defining it outside the component
 // prevents it from being recreated on every render.

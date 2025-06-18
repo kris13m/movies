@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import ApiClient from '../../api/apiClient';
+import ApiClient from '../../../api/apiClient';
 import { toast } from 'react-toastify';
 
 const updateList = async ({ id, params }) => {

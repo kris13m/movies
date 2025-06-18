@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import ApiClient from '../../api/apiClient';
+import ApiClient from '../../../api/apiClient';
 
 // This function is called by the mutation
 const deleteMovie = async ({ listId, movieId }) => {

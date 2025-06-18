@@ -1,31 +1,25 @@
-
-
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "../features/authentication/components/ProtectedRoute";
-import { useEffect } from "react";
 
+// --- Import your Page Components ---
 import HomePage from "./HomePage";
 import MoviesPage from "./MoviesPage";
 import LoginPage from "./LoginPage/LoginPage";
-import MoviePage from "./MoviePage/MoviePage";
+// --- THIS IS THE KEY ---
+// We need to import MoviePage, not MovieDetailView, here.
+import MoviePage from "./MoviePage/MoviePage"; 
 import RegisterPage from "./RegisterPage";
 import ListsPage from "./ListsPage/ListsPage";
 
-
-function Router() { // Renamed from Router to avoid conflict with BrowserRouter
- 
-
+function Router() { 
   return (
     <Routes>
-      {/* --- Public Routes --- */}
       <Route path="/movies" element={<MoviesPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/movies/:id" element={<ProtectedRoute><MoviePage /></ProtectedRoute>} />
       <Route path="/Register" element={<RegisterPage />} />
       <Route path="*" element={<HomePage />} />
-
-      {/* --- Protected Route --- */}
-      {/* This is the key change. We wrap ListsPage in our ProtectedRoute. */}
+      
+      {/* --- Protected Routes --- */}
       <Route
         path="/my-lists"
         element={
@@ -34,42 +28,19 @@ function Router() { // Renamed from Router to avoid conflict with BrowserRouter
           </ProtectedRoute>
         }
       />
+      
+      {/* --- THIS IS THE FIX --- */}
+      {/* We render the MoviePage, which will then render MovieDetailView */}
+      <Route
+        path="/movies/:id"
+        element={
+          <ProtectedRoute>
+            <MoviePage />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
 
 export default Router;
-
-
-/*import { Route, Routes } from "react-router-dom";
-import HomePage from "./HomePage";
-import MoviesPage from "./MoviesPage";
-import LoginPage from "./LoginPage/LoginPage";
-import MoviePage from "./MoviePage/MoviePage";
-import RegisterPage from "./RegisterPage";
-import ListsPage from "./ListsPage/ListsPage"
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { setNavigator } from "../services/navigation";
-
-function Router(){
-    const navigate = useNavigate();
-
-  useEffect(() => {
-    setNavigator(navigate);
-  }, [navigate]);
-
-    return(
-        <Routes>
-            <Route path = "/movies" element = {<MoviesPage/>}></Route>
-            <Route path = "/login" element = {<LoginPage/>}></Route>
-            <Route path="/movies/:id" element={<MoviePage />} />
-            <Route path = "/Register" element = {<RegisterPage />}></Route>
-            <Route path = "/my-lists" element = {<ListsPage/>}></Route>
-            <Route path = "*" element = {<HomePage/>}></Route>
-        </Routes>
-    )
-}
-
-export default Router;
-*/

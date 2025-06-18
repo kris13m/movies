@@ -1,4 +1,4 @@
-import { useCreateList} from "../../hooks/lists/useCreateList"
+import { useCreateList} from "../hooks/useCreateList"
 
 function CreateList(){
 

@@ -1,4 +1,4 @@
-import MovieList from "../components/MovieList/MovieList";
+import MovieList from "../features/movie-browsing/components/MovieList/MovieList";
 
 
 function MoviesPage() {
