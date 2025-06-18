@@ -1,3 +1,4 @@
+/* --- YOUR ORIGINAL STYLES (UNCHANGED) --- */
 .movie-card {
   border: solid black 2px;
   margin: 10px;
@@ -24,8 +25,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
+
+
+  line-height: 1.2; 
+  min-height: 2.4em; 
 }
 
-.movie-card p:last-of-type {
-  margin-top: auto;
+
+.movie-card > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.release-date {
+  margin-top: auto; 
 }

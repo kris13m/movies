@@ -1,19 +1,6 @@
-.params {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-}
-
 .cards-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
-  justify-content: center;
-}
-
-
-.search-bar input {
-  font-size: 15px;
-  width: 400px;
-  height: 30px;
+  justify-items: center;
 }
