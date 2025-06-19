@@ -1,12 +1,22 @@
 const userService = require('../services/usersService');
 
-async function register(req, res) {
-  const { username, password } = req.body;
-
+const deleteUser = async (req, res) => {
   try {
-    const user = await userService.registerUser(username, password);
-    res.status(201).json({ message: 'User registered', user });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    const { id } = req.params;
+    const result = await usersService.deleteUser(id);
+
+    if (!result) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    return res.status(204).send();
+
+  } catch (error) {
+    console.error('Error in usersController.deleteUser:', error);
+    return res.status(500).json({ message: 'Internal server error.' });
   }
-}
+};
+
+module.exports = {
+  deleteUser
+};

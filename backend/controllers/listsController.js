@@ -19,7 +19,7 @@ async function getListsByUserId(req, res){
 
 async function createList(req, res) {
   try {
-    const id = req.user.userId || req.user.id;
+    const id =  req.user.id;
     const name = req.body.name;
 
     const result = await listsService.createList(id, name);
@@ -84,7 +84,7 @@ async function deleteMovieFromList(req, res) {
 
 async function deleteList(req, res) {
   // --- START DEBUGGING LOGS ---
-  console.log("--- CONTROLLER: deleteList reached ---");
+ 
   try {
     const { id: listId } = req.params;
     const userId = req.user.userId; // Assuming the JWT payload key is 'userId'

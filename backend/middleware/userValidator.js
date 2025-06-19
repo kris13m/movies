@@ -6,6 +6,7 @@ const validate = (req, res, next) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+  
   next();
 };
 
@@ -46,59 +47,3 @@ module.exports = {
   registerValidationRules,
   loginValidationRules,
 };
-/*const { validationResult, body } = require('express-validator');
-
-
-const validate = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array()
-    });
-  }
-  next();
-};
-
-const usernameValidator = async (req, res, next) => {
-  await body('username')
-    .isLength({ min: 6 })
-    .withMessage('Username must be at least 3 characters long')
-    .isLength({ max: 20 })
-    .withMessage('Username must be less than 20 characters long')
-    .matches(/^[A-Za-z0-9_-]+$/)
-    .withMessage('Username must only contain letter a-z, numbers, - and _')
-    .run(req);
-
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  next();
-};
-
-const passwordValidator = async (req, res, next) => {
-  await body('password')
-    .isLength({ min: 8 })
-    .withMessage('Password must be at least 8 characters long')
-    .isLength({ max: 20 })
-    .withMessage('Password must be less than 20 characters long')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d_-]+$/)
-    .withMessage(
-      'Password must include at least one uppercase letter, one lowercase letter, one number, and may only contain letters, numbers, hyphens (-), and underscores (_)'
-    )
-    .run(req);
-
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  next();
-};
-
-module.exports = {
-  validate,
-  usernameValidator,
-  passwordValidator
-};
-*/

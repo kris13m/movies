@@ -12,4 +12,14 @@ async function findUserById(userId) {
     return await User.findByPk(userId);
   }
 
-module.exports = { findUserByUsername, createUser, findUserById };
+const deleteUserById = async (id) => {
+  const numberOfRowsDeleted = await User.destroy({
+    where: {
+      user_id: id 
+    }
+  });
+  return numberOfRowsDeleted;
+};
+
+
+module.exports = { findUserByUsername, createUser, findUserById, deleteUserById };
